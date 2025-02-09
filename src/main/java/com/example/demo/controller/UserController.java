@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.users.CreateRegistrationDTO;
 import com.example.demo.dto.users.GetUserDTO;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -40,10 +41,9 @@ public class UserController {
     public ModelAndView register(ModelAndView modelAndView, @ModelAttribute CreateRegistrationDTO createRequest) {
         modelAndView.setViewName("pages/registration");
         try {
-            User user = new User(createRequest.getName(), createRequest.getLastName(), createRequest.getEmail(), createRequest.getUsername(), createRequest.getPassword());
-            User registratedUser = userService.create(user);
 
-            GetUserDTO response = new GetUserDTO(registratedUser.getId(), registratedUser.getName(), registratedUser.getLastName(), registratedUser.getEmail(), registratedUser.getUsername());
+            User registratedUser = userService.create(UserMapper.fromDTOToModel(createRequest));
+            GetUserDTO response = UserMapper.fromModelToDTO(registratedUser);
             modelAndView.addObject("SuccessMessage", "Successfully created" + response.toString());
 
 
@@ -54,7 +54,7 @@ public class UserController {
         List<User> allUsers = userService.getAll();
         List<GetUserDTO> listOfUsers = new ArrayList<>();
         for (User u : allUsers) {
-            listOfUsers.add(new GetUserDTO(u.getId(), u.getName(), u.getLastName(), u.getEmail(), u.getUsername()));
+            listOfUsers.add(UserMapper.fromModelToDTO(u));
         }
         modelAndView.addObject("ListOfUsers", listOfUsers);
         return modelAndView;
