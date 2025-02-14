@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -26,14 +23,8 @@ public class UserController {
     }
 
     @GetMapping
-    public ModelAndView getAll(ModelAndView modelAndView) {
+    public ModelAndView getPage(ModelAndView modelAndView) {
         modelAndView.setViewName("/pages/registration");
-        List<User> allUsers = userService.getAll();
-        List<GetUserDTO> listOfUsers = new ArrayList<>();
-        for (User u : allUsers) {
-            listOfUsers.add(new GetUserDTO(u.getId(), u.getName(), u.getLastName(), u.getEmail(), u.getUsername()));
-        }
-        modelAndView.addObject("ListOfUsers", listOfUsers);
         return modelAndView;
     }
 
@@ -41,22 +32,13 @@ public class UserController {
     public ModelAndView register(ModelAndView modelAndView, @ModelAttribute CreateRegistrationDTO createRequest) {
         modelAndView.setViewName("pages/registration");
         try {
-
             User registratedUser = userService.create(UserMapper.fromDTOToModel(createRequest));
             GetUserDTO response = UserMapper.fromModelToDTO(registratedUser);
-            modelAndView.addObject("SuccessMessage", "Successfully created" + response.toString());
-
-
+            modelAndView.addObject("RegisteredUser", response);
         } catch (RuntimeException ex) {
             modelAndView.addObject("ErrorMessage", ex.getMessage());
         }
-
-        List<User> allUsers = userService.getAll();
-        List<GetUserDTO> listOfUsers = new ArrayList<>();
-        for (User u : allUsers) {
-            listOfUsers.add(UserMapper.fromModelToDTO(u));
-        }
-        modelAndView.addObject("ListOfUsers", listOfUsers);
         return modelAndView;
+
     }
 }

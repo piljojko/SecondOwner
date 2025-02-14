@@ -35,9 +35,7 @@
     <c:if test="${SuccessMessage != null}">
         <p>Optional message: ${SuccessMessage}</p>
     </c:if>
-    <c:if test="${ErrorMessage != null}">
-            <p>Error: ${ErrorMessage}</p>
-        </c:if>
+
 
 </body>
 </html>

@@ -9,30 +9,13 @@
    <h1>Welcome to Vehicle Page</h1>
    	<jsp:include page="/WEB-INF/views/registration-form.jsp"/>
 
-   	<table border="1">
-    	    <thead>
-    	        <tr>
-    	            <th> ID</th>
-    	            <th> Name </th>
-    	            <th> Last name </th>
-                    <th> E-mail </th>
-                    <th> Username </th>
-
-                </th>
-            </thead>
-            <tbody>
-                <c:forEach var="user" items="${ListOfUsers}">
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.name}</td>
-                        <td>${user.lastName}</td>
-                        <td>${user.email}</td>
-                        <td>${user.username}</td>
-
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-
+    <c:choose>
+        <c:when test="${RegisteredUser != null && RegisteredUser.id != null}">
+           <p> User successfully registered ${RegisteredUser} </p>
+        </c:when>
+        <c:when test="${ErrorMessage != null}">
+            <p>Error: ${ErrorMessage}</p>
+        </c:when>
+    </c:choose>
 </body>
 </html>
