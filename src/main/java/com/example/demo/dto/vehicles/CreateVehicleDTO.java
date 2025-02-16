@@ -1,34 +1,25 @@
 package com.example.demo.dto.vehicles;
 
 public class CreateVehicleDTO {
-    private String brand;
-    private String model;
-    private String color;
+    private Long modelId;
+    private Long price;
 
     public CreateVehicleDTO() {
     }
 
-    public String getBrand() {
-        return brand;
+    public Long getModelId() {
+        return modelId;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setModelId(Long modelId) {
+        this.modelId = modelId;
     }
 
-    public String getModel() {
-        return model;
+    public Long getPrice() {
+        return price;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
+    public void setPrice(Long price) {
+        this.price = price;
     }
 }

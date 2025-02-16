@@ -1,24 +1,19 @@
 package com.example.demo.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "vehicle")
 public class Vehicle {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String brand;
-    private String model;
-    private String color;
 
-    public Vehicle(String brand, String model, String color){
-        this.brand = brand;
-        this.model = model;
-        this. color = color;
-    }
+    @ManyToOne
+    @JoinColumn(name = "model_id", nullable = false)
+    private Model model;
 
-    public Vehicle(Long id, String brand, String model, String color) {
-        this.id = id;
-        this.brand = brand;
-        this.model = model;
-        this.color = color;
-    }
+    private Long price;
 
     public Vehicle() {
     }
@@ -31,37 +26,19 @@ public class Vehicle {
         this.id = id;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
+    public Model getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(Model model) {
         this.model = model;
     }
 
-    public String getColor() {
-        return color;
+    public Long getPrice() {
+        return price;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    @Override
-    public String toString() {
-        return "Vehicle{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                '}';
+    public void setPrice(Long price) {
+        this.price = price;
     }
 }

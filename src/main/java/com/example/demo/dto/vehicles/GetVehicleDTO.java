@@ -4,27 +4,17 @@ public class GetVehicleDTO {
     private Long id;
     private String brand;
     private String model;
-    private String color;
+    private Long price;
 
-    public GetVehicleDTO(Long id, String brand, String model, String color) {
+    public GetVehicleDTO(Long id, String brand, String model, Long price) {
         this.id = id;
         this.brand = brand;
         this.model = model;
-        this.color = color;
+        this.price = price;
     }
 
     public Long getId() {
         return id;
-    }
-
-    @Override
-    public String toString() {
-        return "vozilo [" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ']';
     }
 
     public String getBrand() {
@@ -35,7 +25,16 @@ public class GetVehicleDTO {
         return model;
     }
 
-    public String getColor() {
-        return color;
+    public Long getPrice() {
+        return price;
+    }
+
+    @Override
+    public String toString() {
+        return "[" +
+                "brand: " + brand +
+                ", model: " + model +
+                ", price: " + price +
+                ']';
     }
 }

@@ -25,7 +25,12 @@ public class VehicleController {
     @GetMapping
     public ModelAndView getAll(ModelAndView modelAndView){
         modelAndView.setViewName("/pages/vehiclesPage");
-        modelAndView.addObject("ListOfVehicles", vehicleService.getAll());
+        List<Vehicle> allVehicles = vehicleService.getAll();
+        List<GetVehicleDTO> listOfVehicles = new ArrayList<>();
+        for(Vehicle v: allVehicles) {
+            listOfVehicles.add(VehicleMapper.fromModelToDTO(v));
+        }
+        modelAndView.addObject("ListOfVehicles", listOfVehicles);
         return modelAndView;
     }
 
@@ -33,7 +38,7 @@ public class VehicleController {
     public ModelAndView createNewVehicle(ModelAndView modelAndView, @ModelAttribute CreateVehicleDTO vehicleRequest){
         modelAndView.setViewName("pages/vehiclesPage");
 
-        Vehicle savedVehicle =  vehicleService.create(VehicleMapper.fromDTOToModel(vehicleRequest));
+        Vehicle savedVehicle =  vehicleService.create(vehicleRequest);
         GetVehicleDTO response = VehicleMapper.fromModelToDTO(savedVehicle);
         modelAndView.addObject("SuccessMessage", "Successfully created" + response);
         List<Vehicle> allVehicles = vehicleService.getAll();

@@ -9,14 +9,12 @@
 	<h1> Vehicle Form </h1>
 
 	<form action="/vehicles"  method="post">
-        <label form="brand"> Brand: </label>
-        <input type="text" id="brand" name="brand"><br><br>
 
         <label form="model"> Model: </label>
-        <input type="text" id="model" name="model" required><br><br>
+        <input type="text" id="model" name="modelId" required><br><br>
 
-        <label form="color"> Color: </label>
-        <input type="text" id="color" name="color" required><br><br>
+        <label form="price"> Price: </label>
+        <input type="text" id="price" name="price" required><br><br>
 
         <button type="submit"> Submit </button><br><br>
 

@@ -14,7 +14,7 @@
 	        <tr>
 	            <th> Brand </th>
 	            <th> Model </th>
-                <th> Color </th>
+                <th> Price </th>
             </th>
         </thead>
         <tbody>
@@ -22,7 +22,7 @@
                 <tr>
                     <td>${car.brand}</td>
                     <td>${car.model}</td>
-                    <td>${car.color}</td>
+                    <td>${car.price}</td>
                 </tr>
             </c:forEach>
         </tbody>
