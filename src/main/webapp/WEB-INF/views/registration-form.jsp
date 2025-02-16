@@ -10,22 +10,22 @@
 
 	 <form action="/users"  method="post">
 
-                <label form="name"> Name: </label>
+                <label for="name"> Name: </label>
                 <input type="text" id="name" name="name" required<br><br><br>
 
-                <label form="lastName"> Last name: </label>
+                <label for="lastName"> Last name: </label>
                 <input type="text" id="lastName" name="lastName" required><br><br>
 
-                <label form="email"> E-mail: </label>
+                <label for="email"> E-mail: </label>
                 <input type="text" id="email" name="email" required><br><br>
 
-                <label form="username"> Username: </label>
+                <label for="username"> Username: </label>
                 <input type="text" id="username" name="username" required><br><br>
 
-                <label form="password"> Password: </label>
+                <label for="password"> Password: </label>
                 <input type="password" id="password" name="password" required><br><br>
 
-                <label form="passwordCopy"> Confirmed password: </label>
+                <label for="passwordCopy"> Confirmed password: </label>
                 <input type="password" id="passwordCopy" name="passwordCopy" required><br><br>
 
                 <button type="submit"> Submit </button><br><br>

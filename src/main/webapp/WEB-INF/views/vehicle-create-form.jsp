@@ -10,10 +10,15 @@
 
 	<form action="/vehicles"  method="post">
 
-        <label form="model"> Model: </label>
-        <input type="text" id="model" name="modelId" required><br><br>
+        <label for="model">Model:</label>
+        <select id="model" name="modelId">
+            <option>---</option>
+             <c:forEach var="item" items="${ListOfModels}">
+                <option value="${item.id}">${item.name}</option>
+             </c:forEach>
+        </select><br><br>
 
-        <label form="price"> Price: </label>
+        <label for="price"> Price: </label>
         <input type="text" id="price" name="price" required><br><br>
 
         <button type="submit"> Submit </button><br><br>

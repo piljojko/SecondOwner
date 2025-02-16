@@ -31,4 +31,9 @@ public class VehicleService {
         vehicle.setPrice(vehicleDTO.getPrice());
         return vehicleRepository.save(vehicle);
     }
+
+    public List<Model> getAllModels(){
+        return modelRepository.findAll();
+    }
+
 }

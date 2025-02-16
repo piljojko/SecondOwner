@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.vehicles.CreateVehicleDTO;
+import com.example.demo.dto.vehicles.GetModelDTO;
 import com.example.demo.dto.vehicles.GetVehicleDTO;
+import com.example.demo.mapper.ModelMapper;
 import com.example.demo.mapper.VehicleMapper;
+import com.example.demo.model.Model;
 import com.example.demo.model.Vehicle;
 import com.example.demo.service.VehicleService;
 import org.springframework.stereotype.Controller;
@@ -23,7 +26,7 @@ public class VehicleController {
     }
 
     @GetMapping
-    public ModelAndView getAll(ModelAndView modelAndView){
+    public ModelAndView getPage(ModelAndView modelAndView){
         modelAndView.setViewName("/pages/vehiclesPage");
         List<Vehicle> allVehicles = vehicleService.getAll();
         List<GetVehicleDTO> listOfVehicles = new ArrayList<>();
@@ -31,6 +34,12 @@ public class VehicleController {
             listOfVehicles.add(VehicleMapper.fromModelToDTO(v));
         }
         modelAndView.addObject("ListOfVehicles", listOfVehicles);
+        List<Model> allModels = vehicleService.getAllModels();
+        List<GetModelDTO> allModelsDTO = new ArrayList<>();
+        for(Model m : allModels){
+            allModelsDTO.add(ModelMapper.fromModelToDTO(m));
+        }
+        modelAndView.addObject("ListOfModels", allModelsDTO);
         return modelAndView;
     }
 
