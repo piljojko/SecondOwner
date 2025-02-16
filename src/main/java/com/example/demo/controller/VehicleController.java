@@ -26,36 +26,18 @@ public class VehicleController {
     }
 
     @GetMapping
-    public ModelAndView getPage(ModelAndView modelAndView){
+    public ModelAndView getPage(ModelAndView modelAndView) {
         modelAndView.setViewName("/pages/vehiclesPage");
-        List<Vehicle> allVehicles = vehicleService.getAll();
-        List<GetVehicleDTO> listOfVehicles = new ArrayList<>();
-        for(Vehicle v: allVehicles) {
-            listOfVehicles.add(VehicleMapper.fromModelToDTO(v));
-        }
-        modelAndView.addObject("ListOfVehicles", listOfVehicles);
-        List<Model> allModels = vehicleService.getAllModels();
-        List<GetModelDTO> allModelsDTO = new ArrayList<>();
-        for(Model m : allModels){
-            allModelsDTO.add(ModelMapper.fromModelToDTO(m));
-        }
-        modelAndView.addObject("ListOfModels", allModelsDTO);
+        modelAndView.addObject("ListOfVehicles", vehicleService.getAllAsDTO());
+        modelAndView.addObject("ListOfModels", vehicleService.getAllModelsAsDTO());
         return modelAndView;
     }
 
     @PostMapping
-    public ModelAndView createNewVehicle(ModelAndView modelAndView, @ModelAttribute CreateVehicleDTO vehicleRequest){
+    public ModelAndView createNewVehicle(ModelAndView modelAndView, @ModelAttribute CreateVehicleDTO vehicleRequest) {
         modelAndView.setViewName("pages/vehiclesPage");
-
-        Vehicle savedVehicle =  vehicleService.create(vehicleRequest);
-        GetVehicleDTO response = VehicleMapper.fromModelToDTO(savedVehicle);
-        modelAndView.addObject("SuccessMessage", "Successfully created" + response);
-        List<Vehicle> allVehicles = vehicleService.getAll();
-        List<GetVehicleDTO> listOfVehicles = new ArrayList<>();
-        for(Vehicle v: allVehicles) {
-            listOfVehicles.add(VehicleMapper.fromModelToDTO(v));
-        }
-        modelAndView.addObject("ListOfVehicles", listOfVehicles );
+        modelAndView.addObject("SuccessMessage", "Successfully created" + vehicleService.createAndReturnAsDTO(vehicleRequest));
+        modelAndView.addObject("ListOfVehicles", vehicleService.getAllAsDTO());
         return modelAndView;
     }
 
