@@ -13,14 +13,18 @@
 
 	    <label for="brand">Brand:</label>
         <select id="brand" name="brand">
-            <option>---</option>
+            <option value="Nan">---</option>
              <c:forEach var="item" items="${ListOfBrands}">
-                <option value="${item.id}">${item.name}</option>
+                <option
+                    value="${item.id}"
+                    <c:if test="${item.id == selectedBrandId}">selected</c:if>>
+                        ${item.name}
+                </option>
              </c:forEach>
         </select><br><br>
 
         <label for="model">Model:</label>
-        <select id="model" name="modelId" ${isDisabled ? "disabled" : ""}>
+        <select id="model" name="modelId" ${selectedBrandId != null ? "" : "disabled"}>
             <option>---</option>
              <c:forEach var="item" items="${ListOfModels}">
                 <option value="${item.id}">${item.name}</option>
@@ -43,7 +47,10 @@
                 var brandId = $(this).val();
                 console.log("Promenjena vrednost branda na " + brandId)
                 if (!brandId) return;
-                window.location.href = "/vehicles?brandId=" + brandId;
+                if (brandId == "Nan")
+                     window.location.href = "/vehicles";
+                else
+                    window.location.href = "/vehicles?brandId=" + brandId;
             });
         });
     </script>
