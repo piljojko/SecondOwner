@@ -10,8 +10,16 @@
 
 	<form action="/vehicles"  method="post">
 
+	    <label for="brand">Brand:</label>
+        <select id="brand" name="brand">
+            <option>---</option>
+             <c:forEach var="item" items="${ListOfBrands}">
+                <option value="${item.id}">${item.name}</option>
+             </c:forEach>
+        </select><br><br>
+
         <label for="model">Model:</label>
-        <select id="model" name="modelId">
+        <select id="model" name="modelId" disabled>
             <option>---</option>
              <c:forEach var="item" items="${ListOfModels}">
                 <option value="${item.id}">${item.name}</option>

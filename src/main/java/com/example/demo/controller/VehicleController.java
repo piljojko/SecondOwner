@@ -29,7 +29,8 @@ public class VehicleController {
     public ModelAndView getPage(ModelAndView modelAndView) {
         modelAndView.setViewName("/pages/vehiclesPage");
         modelAndView.addObject("ListOfVehicles", vehicleService.getAllAsDTO());
-        modelAndView.addObject("ListOfModels", vehicleService.getAllModelsAsDTO());
+        modelAndView.addObject("ListOfBrands", vehicleService.getAllBrandsAsDTO());
+        //modelAndView.addObject("ListOfModels", vehicleService.getAllModelsAsDTO());
         return modelAndView;
     }
 
