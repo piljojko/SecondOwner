@@ -30,7 +30,7 @@ public class VehicleService {
         this.brandRepository = brandRepository;
     }
 
-    public List<Vehicle> getAll() {
+    private List<Vehicle> getAll() {
         return vehicleRepository.findAll();
     }
 
@@ -42,7 +42,7 @@ public class VehicleService {
         return result;
     }
 
-    public Vehicle create(CreateVehicleDTO vehicleDTO) {
+    private Vehicle create(CreateVehicleDTO vehicleDTO) {
         Model model = modelRepository.findById(vehicleDTO.getModelId()).get();
         Vehicle vehicle = new Vehicle();
         vehicle.setModel(model);
@@ -54,7 +54,7 @@ public class VehicleService {
         return VehicleMapper.fromModelToDTO(create(vehicleDTO));
     }
 
-    public List<Brand> getAllBrands() {
+    private List<Brand> getAllBrands() {
         return brandRepository.findAll();
     }
 
@@ -67,8 +67,20 @@ public class VehicleService {
     }
 
 
-    public List<Model> getAllModels() {
+    private List<Model> getAllModels() {
         return modelRepository.findAll();
+    }
+
+    private List<Model> getAllModelsByBrandId(Long brandId) {
+        return modelRepository.getAllByBrandId(brandId);
+    }
+
+    public List<GetModelDTO> getAllModelsByBrandIdAsDTO(Long brandId) {
+        List<GetModelDTO> result = new ArrayList<>();
+        for (Model m : getAllModelsByBrandId(brandId)) {
+            result.add(ModelMapper.fromModelToDTO(m));
+        }
+        return result;
     }
 
     public List<GetModelDTO> getAllModelsAsDTO() {

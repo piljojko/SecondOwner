@@ -26,11 +26,14 @@ public class VehicleController {
     }
 
     @GetMapping
-    public ModelAndView getPage(ModelAndView modelAndView) {
+    public ModelAndView getPage(ModelAndView modelAndView, @RequestParam(required = false) Long brandId) {
         modelAndView.setViewName("/pages/vehiclesPage");
         modelAndView.addObject("ListOfVehicles", vehicleService.getAllAsDTO());
         modelAndView.addObject("ListOfBrands", vehicleService.getAllBrandsAsDTO());
-        //modelAndView.addObject("ListOfModels", vehicleService.getAllModelsAsDTO());
+        if (brandId != null) {
+            modelAndView.addObject("ListOfModels", vehicleService.getAllModelsByBrandIdAsDTO(brandId));
+        }
+        modelAndView.addObject("isDisabled", brandId == null);
         return modelAndView;
     }
 
