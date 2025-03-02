@@ -7,27 +7,29 @@
 </head>
 <body>
 	<h1>Welcome to Vehicle Page</h1>
+	<jsp:include page="/WEB-INF/views/navigation-bar.jsp"/>
 	<jsp:include page="/WEB-INF/views/vehicle-create-form.jsp"/>
 
-	<table border="1">
-	    <thead>
-	        <tr>
-	            <th> Brand </th>
-	            <th> Model </th>
-                <th> Price </th>
-            </th>
-        </thead>
-        <tbody>
-            <c:forEach var="car" items="${ListOfVehicles}">
+	<div class="content">
+        <table border="1">
+            <thead>
                 <tr>
-                    <td>${car.brand}</td>
-                    <td>${car.model}</td>
-                    <td>${car.price}</td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-
+                    <th> Brand </th>
+                    <th> Model </th>
+                    <th> Price </th>
+                </th>
+            </thead>
+            <tbody>
+                <c:forEach var="car" items="${ListOfVehicles}">
+                    <tr>
+                        <td>${car.brand}</td>
+                        <td>${car.model}</td>
+                        <td>${car.price}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 </html>

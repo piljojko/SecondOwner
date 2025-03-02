@@ -7,15 +7,18 @@
 </head>
 <body>
    <h1>Welcome to Vehicle Page</h1>
+   <jsp:include page="/WEB-INF/views/navigation-bar.jsp"/>
    	<jsp:include page="/WEB-INF/views/registration-form.jsp"/>
 
-    <c:choose>
-        <c:when test="${RegisteredUser != null && RegisteredUser.id != null}">
-           <p> User successfully registered ${RegisteredUser} </p>
-        </c:when>
-        <c:when test="${ErrorMessage != null}">
-            <p>Error: ${ErrorMessage}</p>
-        </c:when>
-    </c:choose>
+    <div class="content">
+        <c:choose>
+            <c:when test="${RegisteredUser != null && RegisteredUser.id != null}">
+               <p> User successfully registered ${RegisteredUser} </p>
+            </c:when>
+            <c:when test="${ErrorMessage != null}">
+                <p>Error: ${ErrorMessage}</p>
+            </c:when>
+        </c:choose>
+    </div>
 </body>
 </html>
