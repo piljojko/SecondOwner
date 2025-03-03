@@ -21,13 +21,13 @@ import java.util.List;
 @Service
 public class VehicleService {
     private VehicleRepository vehicleRepository;
-    private ModelRepository modelRepository;
-    private BrandRepository brandRepository;
+    private ModelService modelService;
+    private BrandService brandService;
 
-    public VehicleService(VehicleRepository vehicleRepository, ModelRepository modelRepository, BrandRepository brandRepository) {
+    public VehicleService(VehicleRepository vehicleRepository, ModelService modelService, BrandService brandService) {
         this.vehicleRepository = vehicleRepository;
-        this.modelRepository = modelRepository;
-        this.brandRepository = brandRepository;
+        this.modelService = modelService;
+        this.brandService = brandService;
     }
 
     private List<Vehicle> getAll() {
@@ -43,7 +43,7 @@ public class VehicleService {
     }
 
     private Vehicle create(CreateVehicleDTO vehicleDTO) {
-        Model model = modelRepository.findById(vehicleDTO.getModelId()).get();
+        Model model = modelService.get(vehicleDTO.getModelId());
         Vehicle vehicle = new Vehicle();
         vehicle.setModel(model);
         vehicle.setPrice(vehicleDTO.getPrice());
@@ -55,7 +55,7 @@ public class VehicleService {
     }
 
     private List<Brand> getAllBrands() {
-        return brandRepository.findAll();
+        return brandService.getAll();
     }
 
     public List<GetBrandDTO> getAllBrandsAsDTO() {
@@ -66,29 +66,14 @@ public class VehicleService {
         return result;
     }
 
-
-    private List<Model> getAllModels() {
-        return modelRepository.findAll();
-    }
-
-    private List<Model> getAllModelsByBrandId(Long brandId) {
-        return modelRepository.getAllByBrandId(brandId);
-    }
-
     public List<GetModelDTO> getAllModelsByBrandIdAsDTO(Long brandId) {
         List<GetModelDTO> result = new ArrayList<>();
-        for (Model m : getAllModelsByBrandId(brandId)) {
+        for (Model m : modelService.getAllByBrandId(brandId)) {
             result.add(ModelMapper.fromModelToDTO(m));
         }
         return result;
     }
 
-    public List<GetModelDTO> getAllModelsAsDTO() {
-        List<GetModelDTO> result = new ArrayList<>();
-        for (Model m : getAllModels()) {
-            result.add(ModelMapper.fromModelToDTO(m));
-        }
-        return result;
-    }
+
 
 }
