@@ -29,14 +29,7 @@ INSERT INTO vehicle (model_id, price) VALUES (7, 45000);  -- Mercedes C-Class - 
 INSERT INTO vehicle (model_id, price) VALUES (8, 55000);  -- Mercedes E-Class - 55,000$
 INSERT INTO vehicle (model_id, price) VALUES (9, 100000); -- Mercedes S-Class - 100,000$
 
-INSERT INTO images (name, base64Image, vehicle_id) VALUES
-('Image 1', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...', 1),
-('Image 2', 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAAAAAAAD...', 2),
-('Image 3', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...', 3),
-('Image 4', 'data:image/gif;base64,R0lGODlhPQBEAP8AAJXh...', 4),
-('Image 5', 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAAAAAAAD...', 5),
-('Image 6', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...', 6),
-('Image 7', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...', 7),
-('Image 8', 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAAAAAAAD...', 8),
-('Image 9', 'data:image/gif;base64,R0lGODlhPQBEAP8AAJXh...',9);
+INSERT INTO image (name, base64Image, vehicle_id) VALUES
+('Image 1', 'https://i.pinimg.com/1200x/00/c1/c0/00c1c001455f45bf52dc3cdc70d85c91.jpg', 1),
+('Image 2', 'https://i.pinimg.com/736x/e9/0e/87/e90e87854d075a264ba1c896a69033c2.jpg', 2);
 

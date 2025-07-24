@@ -8,7 +8,7 @@
 
 <div class="content">
 <c:forEach var="image" items="${base64Images}">
-<img src="${image}" alt="Image"/>
+<img src="${image}" alt="Image" width="200" height="150"/>
 </c:forEach>
 
 </div>
