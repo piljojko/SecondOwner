@@ -9,6 +9,7 @@
 	<h1>Welcome to Vehicle Page</h1>
 	<jsp:include page="/WEB-INF/views/navigation-bar.jsp"/>
 	<jsp:include page="/WEB-INF/views/vehicle-create-form.jsp"/>
+	<jsp:include page="/WEB-INF/views/vehicle-images.jsp"/>
 
 	<div class="content">
         <table border="1">
@@ -30,6 +31,7 @@
             </tbody>
         </table>
     </div>
+
 
 </body>
 </html>

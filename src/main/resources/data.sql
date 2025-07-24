@@ -29,3 +29,7 @@ INSERT INTO vehicle (model_id, price) VALUES (7, 45000);  -- Mercedes C-Class - 
 INSERT INTO vehicle (model_id, price) VALUES (8, 55000);  -- Mercedes E-Class - 55,000$
 INSERT INTO vehicle (model_id, price) VALUES (9, 100000); -- Mercedes S-Class - 100,000$
 
+INSERT INTO image (name, base64Image, vehicle_id) VALUES
+('Image 1', 'https://i.pinimg.com/1200x/00/c1/c0/00c1c001455f45bf52dc3cdc70d85c91.jpg', 1),
+('Image 2', 'https://i.pinimg.com/736x/e9/0e/87/e90e87854d075a264ba1c896a69033c2.jpg', 2);
+
